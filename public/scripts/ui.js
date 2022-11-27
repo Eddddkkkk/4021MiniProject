@@ -56,15 +56,6 @@ const SignInForm = (function() {
                 (error) => { $("#register-message").text(error); }
             );
         });
-   
-        // improvement
-        // add a keydown listener to the input-form
-        $("#chat-input-form").keydown("typing", () => {
-            //Send a WebSocket message to the server
-            // console.log("test_typing");
-            socket = Socket.getSocket();
-            socket.emit("typing");
-        });
     };
 
     // This function shows the form
@@ -183,73 +174,94 @@ const OnlineUsersPanel = (function() {
     return { initialize, update, addUser, removeUser };
 })();
 
-const ChatPanel = (function() {
-	// This stores the chat area
-    let chatArea = null;
+// const ChatPanel = (function() {
+// 	// This stores the chat area
+//     let chatArea = null;
 
-    // This function initializes the UI
+//     // This function initializes the UI
+//     const initialize = function() {
+// 		// Set up the chat area
+// 		chatArea = $("#chat-area");
+
+//         // Submit event for the input form
+//         $("#chat-input-form").on("submit", (e) => {
+//             // Do not submit the form
+//             e.preventDefault();
+
+//             // Get the message content
+//             const content = $("#chat-input").val().trim();
+
+//             // Post it
+//             Socket.postMessage(content);
+
+// 			// Clear the message
+//             $("#chat-input").val("");
+//         });
+
+//         // improvement
+//         // add a keydown listener to the input-form
+//         $("#chat-input-form").keydown("typing", () => {
+//             //Send a WebSocket message to the server
+//             // console.log("test_typing");
+//             socket = Socket.getSocket();
+//             socket.emit("typing");
+//         });
+//  	};
+
+//     // This function updates the chatroom area
+//     const update = function(chatroom) {
+//         // Clear the online users area
+//         chatArea.empty();
+
+//         // Add the chat message one-by-one
+//         for (const message of chatroom) {
+// 			addMessage(message);
+//         }
+//     };
+
+//     // improvement
+//     // This function updates the typing status
+//     const update_typing = function(username) {
+
+//         $("#typing-status").text(username + " is typing...");
+//         setTimeout(() => {
+//             $("#typing-status").text("");
+//         }, 3000);
+//     };
+
+
+
+//     // This function adds a new message at the end of the chatroom
+//     const addMessage = function(message) {
+// 		const datetime = new Date(message.datetime);
+// 		const datetimeString = datetime.toLocaleDateString() + " " +
+// 							   datetime.toLocaleTimeString();
+
+// 		chatArea.append(
+// 			$("<div class='chat-message-panel row'></div>")
+// 				.append(UI.getUserDisplay(message.user))
+// 				.append($("<div class='chat-message col'></div>")
+// 					.append($("<div class='chat-date'>" + datetimeString + "</div>"))
+// 					.append($("<div class='chat-content'>" + message.content + "</div>"))
+// 				)
+// 		);
+// 		chatArea.scrollTop(chatArea[0].scrollHeight);
+//     };
+
+//     return { initialize, update, update_typing, addMessage };
+// })();
+
+const front_page = (function() {
+
     const initialize = function() {
-		// Set up the chat area
-		chatArea = $("#chat-area");
-
-        // Submit event for the input form
-        $("#chat-input-form").on("submit", (e) => {
-            // Do not submit the form
-            e.preventDefault();
-
-            // Get the message content
-            const content = $("#chat-input").val().trim();
-
-            // Post it
-            Socket.postMessage(content);
-
-			// Clear the message
-            $("#chat-input").val("");
-        });
- 	};
-
-    // This function updates the chatroom area
-    const update = function(chatroom) {
-        // Clear the online users area
-        chatArea.empty();
-
-        // Add the chat message one-by-one
-        for (const message of chatroom) {
-			addMessage(message);
-        }
-    };
-
-    // improvement
-    // This function updates the typing status
-    const update_typing = function(username) {
-
-        $("#typing-status").text(username + " is typing...");
-        setTimeout(() => {
-            $("#typing-status").text("");
-        }, 3000);
-    };
+        // hide all interfaces 
+        // $("#container").hide();
 
 
-
-    // This function adds a new message at the end of the chatroom
-    const addMessage = function(message) {
-		const datetime = new Date(message.datetime);
-		const datetimeString = datetime.toLocaleDateString() + " " +
-							   datetime.toLocaleTimeString();
-
-		chatArea.append(
-			$("<div class='chat-message-panel row'></div>")
-				.append(UI.getUserDisplay(message.user))
-				.append($("<div class='chat-message col'></div>")
-					.append($("<div class='chat-date'>" + datetimeString + "</div>"))
-					.append($("<div class='chat-content'>" + message.content + "</div>"))
-				)
-		);
-		chatArea.scrollTop(chatArea[0].scrollHeight);
-    };
-
-    return { initialize, update, update_typing, addMessage };
+    }; 
+    return {initialize};  
 })();
+
 
 const UI = (function() {
     // This function gets the user display
@@ -261,7 +273,7 @@ const UI = (function() {
     };
 
     // The components of the UI are put here
-    const components = [SignInForm, UserPanel, OnlineUsersPanel, ChatPanel];
+    const components = [SignInForm, UserPanel, OnlineUsersPanel, front_page];
 
     // This function initializes the UI
     const initialize = function() {

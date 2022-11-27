@@ -15,7 +15,7 @@ const Fire = function(ctx, x, y) {
     sprite.setSequence(sequence)
           .setScale(2)
           .setShadowScale({ x: 0.75, y: 0.20 })
-          .useSheet("object_sprites.png");
+          .useSheet("../media/object_sprites.png");
 
     sprite.setXY(x, y);
 

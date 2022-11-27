@@ -45,30 +45,30 @@ const Socket = (function() {
         });
 
         // Set up the messages event
-        socket.on("messages", (chatroom) => {
-            chatroom = JSON.parse(chatroom);
+        // socket.on("messages", (chatroom) => {
+        //     chatroom = JSON.parse(chatroom);
 
-            // Show the chatroom messages
-            ChatPanel.update(chatroom);
-        });
+        //     // Show the chatroom messages
+        //     ChatPanel.update(chatroom);
+        // });
 
         // Set up the add message event
-        socket.on("add message", (message) => {
-            message = JSON.parse(message);
+        // socket.on("add message", (message) => {
+        //     message = JSON.parse(message);
 
-            // Add the message to the chatroom
-            ChatPanel.addMessage(message);
-        });
+        //     // Add the message to the chatroom
+        //     ChatPanel.addMessage(message);
+        // });
 
         // Imporvement
         // Set up the typing event 
-        socket.on("typing_user", (user) => {
-            user = JSON.parse(user);
-            // console.log(user.username+"is typing");
-            // console.log(Authentication.getUser());
-            if (Authentication.getUser().name != user.name)
-                ChatPanel.update_typing(user.name);
-        });
+        // socket.on("typing_user", (user) => {
+        //     user = JSON.parse(user);
+        //     // console.log(user.username+"is typing");
+        //     // console.log(Authentication.getUser());
+        //     if (Authentication.getUser().name != user.name)
+        //         ChatPanel.update_typing(user.name);
+        // });
     };
 
     // This function disconnects the socket from the server

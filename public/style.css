@@ -252,8 +252,62 @@ button.icon:active {
 }
 
 /* For the game html */
-#page2{
-    width:400px;
-    height:800px;
+#game-container {
+    position: relative;
+    width:854px;
+    height:480px;
     display:none;
     }
+
+body {
+    font-family: "Press Start 2P", sans-serif;
+}
+
+canvas, #counter, #game-start, #game-over {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+canvas, #game-start, #game-over {
+    border: 1px solid gray;
+    width: 854px;
+    height: 480px;
+}
+canvas {
+    background: url(media/background.png);
+    background-size: cover;
+}
+#game-start, #game-over {
+    background: rgba(1, 1, 1, 0.8);
+}
+#counter text {
+    font-size: 130%;
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+}
+#game-start text {
+    font-size: 150%;
+    fill: white;
+    text-anchor: middle;
+}
+#game-start #game-title {
+    font-size: 400%;
+    fill: url(#title-fill);
+    stroke: black;
+}
+#game-over text {
+    font-size: 120%;
+    fill: url(#game-over-fill);
+    text-anchor: middle;
+}
+
+#start_game_button {
+    width:100px;
+}
+#start_game_button_container {
+    position: relative;
+    top: 80%;
+    text-align: center;
+}
+
